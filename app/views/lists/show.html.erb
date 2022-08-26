@@ -13,6 +13,7 @@
   <ul lass="list-group">
   <% @list.bookmarks.each do |bookmark|  %>
     <li class="list-group-item d-flex justify-content-between align-items-center">
+      <%= image_tag bookmark.movie.poster_url, alt: "movie poster", width: 200 %>
       <span class="fw-bold">Movie:</span> <%= bookmark.movie.title %>
       <span class="fw-bold">Comment:</span> <%= bookmark.comment %>
       <%= link_to "Delete",
