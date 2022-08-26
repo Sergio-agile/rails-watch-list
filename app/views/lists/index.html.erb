@@ -4,6 +4,10 @@
   <% @lists.each do |list| %>
     <li>
       <h2><%= list.name %></h2>
+      <% if list.photo.attached? %>
+        <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+
       <%= link_to 'See Details', list_path(list), class: 'btn btn-secondary' %>
     </li>
   <% end %>
