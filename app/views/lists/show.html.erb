@@ -5,9 +5,22 @@
   <div class="mb-3">
       <%= f.input :comment %>
       <%= f.input :movie, collection:Movie.all %>
-      <!--<%= f.association :movie %>-->
   </div>
-  <%= f.submit "Add", class: "btn btn-primary" %>
+  <div class="mb-3">
+    <%= f.submit "Add", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <ul lass="list-group">
+  <% @list.bookmarks.each do |bookmark|  %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span class="fw-bold">Movie:</span> <%= bookmark.movie.title %>
+      <span class="fw-bold">Comment:</span> <%= bookmark.comment %>
+      <%= link_to "Delete",
+        bookmark_path(bookmark),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </li>
   <% end %>
+  </ul>
+
 
 </div>

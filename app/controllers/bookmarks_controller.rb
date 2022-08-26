@@ -1,7 +1,6 @@
 class BookmarksController < ApplicationController
 
   def create
-    debugger
     @list = List.find(params[:list_id])
     @movie = Movie.find(params[:bookmark][:movie])
     @comment = params[:bookmark][:comment]
@@ -10,6 +9,15 @@ class BookmarksController < ApplicationController
       redirect_to list_path(@list)
     else
       render 'lists/show', @list, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @bookmark = Bookmark.find(params[:id])
+    if @bookmark.destroy
+      redirect_to list_path(@bookmark.list)
+    else
+      render 'lists/show', @bookmark.list, status: :see_other
     end
   end
 
